@@ -28,19 +28,28 @@ var Catalogue = {
 
                     html += '<div class="col-md-4">' +
                                 '<h2>'+issue.title+'</h2>' +
-                                '<p>'+issue.description+'</p>' +
-                                '<p><a class="btn '+priorityClass+' moreDetails" href="#" role="button" data-issueID="'+issue.id+'">View details &raquo;</a></p>' +
+                                '<p id="'+issue.id+'DescriptionParagraph">'+issue.description+'</p>' +
+                                '<p><a class="btn '+priorityClass+' moreDetails" href="#" role="button" data-issueID="'+issue.id+'" data-toggle="modal" data-target="#detailsModal">View details &raquo;</a></p>' +
                             '</div>';
 
                 }
-
                 html += '</div>';
 
-                
-
-
                 $("#issuesContainer").html(html);
-            }
+
+
+                this.registerDetailsModal();
+            }.bind(Catalogue)
         })
+    },
+
+    registerDetailsModal: function() {
+        $(".moreDetails").click(function(e) {
+            console.log(e.target);
+            var issueID = e.target.dataset.issueid;
+            var description = $("#"+issueID+'DescriptionParagraph').html();
+
+            $("#detailsModal .modal-body").html(description);
+        });
     }
 };

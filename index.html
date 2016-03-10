@@ -61,10 +61,24 @@
     </div>
 </div>
 
+<!-- This can be part of the view class if prefer to have code in same place. Might look a bit like ReactJS.
+    Possible advantage of having it here is synchronization with server controlled styling if a requirement
+ -->
+<template id="issueTemplate">
+    <div class="col-md-4">
+        <h2 class="issueTitle"></h2>
+        <p class="issueDescription"></p>
+        <p><a class="btn moreDetails" href="#" role="button" data-issueID=""
+              data-toggle="modal" data-target="#detailsModal">View details &raquo;</a></p>
+    </div>
+</template>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="Issue.js"></script>
+<script src="IssueStore.js"></script>
 <script src="catalogue.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

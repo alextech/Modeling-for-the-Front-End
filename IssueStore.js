@@ -16,7 +16,15 @@ var IssueStore = {
             success: function (response, textStatus, jqXHR) {
                 this.issues = [];
                 for(var i = 0; i<response.issues.length; i++) {
-                    var issue = new Issue(response.issues[i]);
+                    var issue = new Issue();
+
+                    var issueRaw = response.issues[i];
+                    // can be automated with for-in loop
+                    issue.id    = issueRaw.id;
+                    issue.title = issueRaw.title;
+                    issue.priority    = issueRaw.priority;
+                    issue.description = issueRaw.description;
+
                     this.issues.push(issue);
 
                     // Indexing useful for arbitrary lookup without complex filters

@@ -5,32 +5,26 @@ var Catalogue = {
 
     load: function() {
         IssueStore.getAllIssues().done(function(issues) {
-            var html = '<div class="row">';
+            var issuesContainerNode = document.getElementById("issuesContainer");
+            while (issuesContainerNode.firstChild) {
+                issuesContainerNode.removeChild(issuesContainerNode.firstChild);
+            }
+
+            var rowNode = document.createElement('div');
+            rowNode.classList.add('row');
+
             for(var i = 0; i < issues.length; i++) {
                 if(i % 3 == 0 && i > 0) {
-                    html += '</div><div class="row">';
+                    issuesContainerNode.appendChild(rowNode);
+                    rowNode = document.createElement('div');
+                    rowNode.classList.add('row');
                 }
-                html += issues[i];
+                rowNode.appendChild(issues[i].getDomNode());
             }
-            html += '</div>';
 
-
-            $("#issuesContainer").html(html);
-
-
-            this.registerDetailsModal();
+            issuesContainerNode.appendChild(rowNode)
         }.bind(Catalogue));
 
 
-    },
-
-    registerDetailsModal: function() {
-        $(".moreDetails").click(function(e) {
-            console.log(e.target);
-            var issueID = e.target.dataset.issueid;
-            var description = IssueStore.getIssueById(issueID).description; // OH LOOK! ACCURATE CODE COMPLETION IN JS??!!
-
-            $("#detailsModal .modal-body").html(description);
-        });
     }
 };

@@ -3,19 +3,25 @@
      {
        "id" : 1,
        "title" : "No Clear Purpose",
-       "description" : "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ",
+       "description" : "Receiving a block of JSON response without a concrete definition of its structure makes understanding of how it can be used difficult. Conversely, looking at template usage along does not readily show conditions under which that data can occur.",
        "priority" : "high"
      },
     {
        "id" : 2,
        "title" : "No Placeholder Pointers",
-       "description" : "Query over and over, chasing current DOM state.",
+       "description" : "Have to constantly recreate template going through trouble of registering events every time. Error prone, especially if template changed. Query code hard to read due to cryptic ID/Class names.",
        "priority" : "medium"
      },
     {
        "id" : 3,
        "title" : "No way to get data after",
-       "description" : "Have to do very awkward parsing of HTML to get data back.",
+       "description" : "Response structure is easily lost from async. callback. Have to parse resultant DOM for data that should already be available.",
+       "priority" : "high"
+     },
+    {
+       "id" : 4,
+       "title" : "Cannot create consistent objects",
+       "description" : "Data originates not only from AJAX but from Forms. Server and form validators expects same data structure back and forward. Must not allow for inconsistencies by letting object be created in multiple ways. Reuse same factory.",
        "priority" : "high"
      }
   ]

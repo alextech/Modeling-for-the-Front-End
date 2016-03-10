@@ -2,13 +2,13 @@
   "issues": [
      {
        "id" : 1,
-       "title" : "No Clear Purpose",
+       "title" : "No clear purpose",
        "description" : "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ",
-       "priority" : "high"
+       "priority" : "medium"
      },
     {
        "id" : 2,
-       "title" : "No Placeholder Pointers",
+       "title" : "No placeholder pointers",
        "description" : "Query over and over, chasing current DOM state.",
        "priority" : "medium"
      },
@@ -16,6 +16,12 @@
        "id" : 3,
        "title" : "No way to get data after",
        "description" : "Have to do very awkward parsing of HTML to get data back.",
+       "priority" : "high"
+     },
+    {
+       "id" : 4,
+       "title" : "Cannot reliably create client side instances",
+       "description" : "Form data is never created the same way. Minor differences between creating object when loading from server and when collecting user input. Hard to sport bugs.",
        "priority" : "high"
      }
   ]

@@ -1,5 +1,5 @@
 var IssueStore = {
-    url: 'issues.json',
+    url: 'issues.html',
 
     init: function() {
         this.issues = null;
@@ -12,18 +12,16 @@ var IssueStore = {
         var promise = $.ajax({
             url: this.url,
             type: 'get',
-            dataType: 'json',
             success: function (response, textStatus, jqXHR) {
                 this.issues = [];
-                for(var i = 0; i<response.issues.length; i++) {
-                    var issue = new Issue();
+                console.log(response); // ITS BACK! we are feeling lost again
+                var responseDOM = document.createElement('div');
+                responseDOM.innerHTML = response; // temporary in memory separate DOM tree to work with
+                var issues = responseDOM.getElementsByClassName('col-md-4');
+                console.log(issues);
 
-                    var issueRaw = response.issues[i];
-                    // can be automated with for-in loop
-                    issue.id    = issueRaw.id;
-                    issue.title = issueRaw.title;
-                    issue.priority    = issueRaw.priority;
-                    issue.description = issueRaw.description;
+                for(var i = 0; i< issues.length; i++) {
+                    var issue = new Issue(issues[i]);
 
                     this.issues.push(issue);
 

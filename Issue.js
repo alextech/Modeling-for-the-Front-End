@@ -1,61 +1,72 @@
-var Issue =  function() {
+var Issue =  function(node) {
 
-    var domNode;
-    var jqDomNode;  //best of both worlds
+    var domNode = node;
+    var jqDomNode = $(node);  //best of both worlds
+
+    // extract nodes
+    var titleNode       = domNode.getElementsByTagName('h2')[0];
+    var descriptionNode = domNode.getElementsByTagName('p')[0];
+    var buttonNode      = domNode.querySelector('a'); // featuring fully flexible selector
+
+    // extract initial values.
+    var title       = titleNode.innerHTML;
+    var description = descriptionNode.innerHTML;
+    var priority    = buttonNode.classList[2];
+
 
     // utility variables - personal convention
     var currentPriorityClass = 'btn-default';
 
     var modalView = $("#detailsModal .modal-body");
 
+    var detailsButtonClickHandler = function() {
+        modalView.html(description);
+    };
+
     var issueObj = {
-        init: function () {
-            jqDomNode = $($("#issueTemplate").html());
-            domNode = jqDomNode.get(0);
-
-            // define node pointers
-            this.titleNode = domNode.getElementsByClassName('issueTitle')[0];
-            this.descriptionNode = jqDomNode.find(".issueDescription");  // just to show jQuery alternative
-            this.buttonNode = domNode.getElementsByClassName('moreDetails')[0];
-
-            // attach handlers
-            this.buttonNode.addEventListener('click', this.detailsButtonClickHandler.bind(this));
-        },
-
         set id(id) {
             this._id = id;
         },
 
-        set title(title) {
-            this._title = title;
-            this.titleNode.innerHTML = title;
+        get id() {
+            return this._id;
         },
 
-        set description(description) {
-            this._description = description;
-            this.descriptionNode.html(description); // just to show jQuery alternative
+        set title(t) {
+            title = t;
+            titleNode.innerHTML = title;
         },
 
-        set priority(priority) {
-            this._priority = priority;
+        get title() {
+            return title;
+        },
 
-            if (this._priority.localeCompare("high") == 0) {
-                this._priorityClass = "btn-danger"
-            } else if (this._priority.localeCompare("medium") == 0) {
-                this._priorityClass = "btn-warning"
-            } else if (this._priority.localeCompare("low") == 0) {
-                this.priorityClass = "btn-info"
+        set description(d) {
+            description = d;
+            descriptionNode.html(description); // just to show jQuery alternative
+        },
+
+        get description() {
+            return description;
+        },
+
+        set priority(p) {
+            priority = p;
+
+            var priorityClass;
+            if (priority.localeCompare("high") == 0) {
+                priorityClass = "btn-danger"
+            } else if (priority.localeCompare("medium") == 0) {
+                priorityClass = "btn-warning"
+            } else if (priority.localeCompare("low") == 0) {
+                priorityClass = "btn-info"
             } else {
-                this.priorityClass = "btn-default"
+                priorityClass = "btn-default"
             }
 
-            this.buttonNode.classList.remove(currentPriorityClass);
-            this.buttonNode.classList.add(this._priorityClass);
-            currentPriorityClass = this.priorityClass;
-        },
-
-        detailsButtonClickHandler: function() {
-            modalView.html(this._description);
+            buttonNode.classList.remove(currentPriorityClass);
+            buttonNode.classList.add(priorityClass);
+            currentPriorityClass = priorityClass;
         },
 
         getDomNode: function() {
@@ -63,6 +74,7 @@ var Issue =  function() {
         }
     };
 
-    issueObj.init();
+    buttonNode.addEventListener('click', detailsButtonClickHandler);
+
     return issueObj;
 };

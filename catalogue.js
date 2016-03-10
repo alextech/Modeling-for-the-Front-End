@@ -28,7 +28,7 @@ var Catalogue = {
         $(".moreDetails").click(function(e) {
             console.log(e.target);
             var issueID = e.target.dataset.issueid;
-            var description = $("#"+issueID+'DescriptionParagraph').html();
+            var description = IssueStore.getIssueById(issueID).description; // OH LOOK! ACCURATE CODE COMPLETION IN JS??!!
 
             $("#detailsModal .modal-body").html(description);
         });

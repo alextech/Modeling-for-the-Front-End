@@ -3,7 +3,7 @@ var IssueStore = {
 
     init: function() {
         this.issues = null;
-
+        this.idIndex = {};
     },
 
     // these act as API proxies and can take parameters to be passed up to server
@@ -16,7 +16,12 @@ var IssueStore = {
             success: function (response, textStatus, jqXHR) {
                 this.issues = [];
                 for(var i = 0; i<response.issues.length; i++) {
-                    this.issues.push(new Issue(response.issues[i]))
+                    var issue = new Issue(response.issues[i]);
+                    this.issues.push(issue);
+
+                    // Indexing useful for arbitrary lookup without complex filters
+                    // no worries about wrong objects because these are just pointers
+                    this.idIndex[issue.id] = issue;
                 }
             }.bind(IssueStore)
         }).then(function() {
@@ -25,6 +30,22 @@ var IssueStore = {
 
 
         return promise;
+    },
+
+    /**
+     *
+     * @param id
+     * @returns {Issue}
+     */
+    getIssueById: function(id) {
+        // check if exists locally, otherwise do another ajax requests to be sure its really not there
+
+        // lazy demo
+        if(this.idIndex.hasOwnProperty(id)) {
+            return this.idIndex[id];
+        } else {
+            // your style of caching fallback
+        }
     },
 
     // other interesting parameters

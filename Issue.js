@@ -24,6 +24,6 @@ Issue.prototype.toString = function () {
     return '<div class="col-md-4">' +
                 '<h2>'+this.title+'</h2>' +
                 '<p>'+this.description+'</p>' +
-                '<p><a class="btn '+this.priorityClass+' moreDetails" href="#" role="button" data-toggle="modal" data-target="#detailsModal">View details &raquo;</a></p>' +
+                '<p><a class="btn '+this.priorityClass+' moreDetails" href="#" role="button" data-toggle="modal" data-target="#detailsModal" data-issueID="'+this.id+'">View details &raquo;</a></p>' +
             '</div>';
 };

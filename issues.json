@@ -2,26 +2,20 @@
   "issues": [
      {
        "id" : 1,
-       "title" : "No Clear Purpose",
-       "description" : "Receiving a block of JSON response without a concrete definition of its structure makes understanding of how it can be used difficult. Conversely, looking at template usage along does not readily show conditions under which that data can occur.",
+       "title" : "Difficult to switch payload type",
+       "description" : "Puts extra pressure on server coder to distinguish request parameter nuances at every API entry point.",
        "priority" : "high"
      },
     {
        "id" : 2,
-       "title" : "No Placeholder Pointers",
-       "description" : "Have to constantly recreate template going through trouble of registering events every time. Error prone, especially if template changed. Query code hard to read due to cryptic ID/Class names.",
+       "title" : "Scraping is inherently unreliable",
+       "description" : "Minor HTML tag organization changes to fix CSS styling issues break scraping pattern.",
        "priority" : "medium"
      },
     {
        "id" : 3,
-       "title" : "No way to get data after",
-       "description" : "Response structure is easily lost from async. callback. Have to parse resultant DOM for data that should already be available.",
-       "priority" : "high"
-     },
-    {
-       "id" : 4,
-       "title" : "Cannot create consistent objects",
-       "description" : "Data originates not only from AJAX but from Forms. Server and form validators expects same data structure back and forward. Must not allow for inconsistencies by letting object be created in multiple ways. Reuse same factory.",
+       "title" : "No confidence",
+       "description" : "Waste time reexamining what the payload looks like instead of writing up a definition that can be referenced.",
        "priority" : "high"
      }
   ]

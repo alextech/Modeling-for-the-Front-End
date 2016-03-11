@@ -1,0 +1,15 @@
+{
+    "name"       : "ModelingForTheFrontEnd",
+    "version"    : "1.0.0",
+    "description": "A talk covering techniques to avoid unmanageable data flow from server to client and back by establishing models and corresponding model stores.",
+    "repository" : {
+        "type": "git",
+        "url" : "https://github.com/alextech/Modeling-for-the-Front-End.git"
+    },
+    "license"    : "MIT",
+    
+    "dependencies": {
+        "bootstrap": "3.x",
+        "jquery"   : ">=1.11 < 2.0"
+    }
+}
